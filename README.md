@@ -12,24 +12,13 @@ Typically most findings come in **on the last day of the contest**, so don't be 
 
 As a sponsor, you have four critical tasks in the contest process:
 
-1. Handle duplicate issues.
-2. Weigh in on severity.
-3. Respond to issues.
-4. Share your mitigation of findings.
+1. Weigh in on severity.
+2. Respond to issues.
+3. Share your mitigation of findings.
 
 Let's walk through each of these.
 
 ## High and Medium Risk Issues
-
-### Handle duplicates
-
-Because wardens submit issues without seeing each other's submissions, there will always be findings that are clear duplicates. Other findings may use different language that ultimately describes the same issue, but from different angles. Use your best judgment in identifying duplicates, and don't hesitate to reach out (in your private contest channel) to ask C4 for advice.
-
-1. For all issues labeled `3 (High Risk)` or `2 (Medium Risk)`, determine the best and most thorough description of the finding among the set of duplicates. (At least a portion of the content of the most useful description will be used in the audit report.)
-2. Close the other duplicate issues and label them with `duplicate`
-3. Mention the primary issue # when closing the issue (using the format `Duplicate of #issueNumber`), so that duplicate issues get linked.
-
-**Note: QA and Gas reports do *not* need to be de-duped.** Please see the "QA and Gas reports" section below for more details.
 
 ### Weigh in on severity 
 
@@ -67,15 +56,15 @@ For QA and Gas reports, we ask that you:
 - Leave a comment for the judge on any reports you consider to be particularly high quality. (These reports will be awarded on a curve.)
 - Add the `sponsor disputed` label to any reports that you think should be *completely* disregarded by the judge, i.e. the report contains no valid findings at all.
 
-## Once de-duping and labelling is complete
+## Once labelling is complete
 
-When you have marked all duplicates and labelled all findings, drop the C4 team a note in your private Discord backroom channel and let us know you've completed the sponsor review process. At this point, we will pass the repo over to the judge, and they'll get to work while you work on mitigation.  
+When you have labelled all findings, drop the C4 team a note in your private Discord backroom channel and let us know you've completed the sponsor review process. At this point, we will pass the repo over to the judge, and they'll get to work while you work on mitigation.  
 
 ## Share your mitigation of findings
 
 *Note: this section does not need to be completed in order to move to the judging phase. You can continue work on mitigations while judging is occurring and even beyond that. Ultimately we won't publish the final audit report until you give us the ok.*
 
-For each non-duplicate finding which you have confirmed, you will want to mitigate the issue before the contest report is made public.
+For each finding which you have confirmed, you will want to mitigate the issue before the contest report is made public.
 
 As you undertake that process, we request that you take the following steps:
 
