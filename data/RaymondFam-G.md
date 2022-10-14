@@ -32,9 +32,10 @@ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBToken.sol#L211
         _totalSupplies[_id] =  _totalSupplies[_id] + _amount;
 ```
 ## Caching Arrays' Length to Save Gas
-Reading an array's length at each iteration of the loop takes 6 gas (3 for mload and 3 for placing memory_offset) in the stack. As such, caching the array length in the stack saves around 3 gas per iteration. Here is one of the instances entailed:
+Reading an array's length at each iteration of the loop takes 6 gas (3 for mload and 3 for placing memory_offset) in the stack. As such, caching the array length in the stack saves around 3 gas per iteration. Here are some of the instances entailed:
 
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBToken.sol#L90
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L278
  
 ## Function Order Affects Gas Consumption
 The order of function will also have an impact on gas consumption. Because in smart contracts, there is a difference in the order of the functions. Each position will have an extra 22 gas. The order is dependent on method ID. So, if you rename the frequently accessed function to more early method ID, you can save gas cost. Please visit the following site for further information:
@@ -118,5 +119,30 @@ Similarly, the following line of code may be rewritten as:
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBToken.sol#L284
 
 ```
-                if (!(_accountBalance != 0 && _amount == 0)) {
+                if (!(_accountBalance != 0 || _amount == 0)) {
 ```
+The following line of code may also be rewritten as:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L278
+
+```
+                if (!(_lastId < _id || i == 0)) revert LBPair__OnlyStrictlyIncreasingId();
+```
+Note that this would kill two birds with one stone considering >= has been replaced with <.
+
+## Ternary Over `if ... else`
+Using ternary operator instead of the if else statement saves gas. For instance the following code block may be rewritten as:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L406-L412
+
+```
+        _swapForY
+            ? {
+                amountYOut = _amountOut;
+                tokenY.safeTransfer(_to, _amountOut);
+            }
+            : {
+                amountXOut = _amountOut;
+                tokenX.safeTransfer(_to, _amountOut);
+            }
+``` 
