@@ -28,3 +28,14 @@ Consider bounding the loop where possible to avoid unnecessary gas wastage and d
 Performing transfers with a low-level call without confirming contract’s existence (not yet deployed or have been destructed) could return success even though no transfer was executed. Here is one of the instances entailed:
 
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L963-L966
+
+## `block.timestamp` Unreliable
+The use of `block.timestamp` as part of the time checks can be slightly altered by miners/validators to favor them in contracts that have logic strongly dependent on them.
+
+Consider taking into account this issue and warning the users that such a scenario could happen. If the alteration of timestamps cannot affect the protocol in any way, consider documenting the reasoning and writing tests enforcing that these guarantees will be preserved even if the code changes in the future.
+
+Here are some of the instances entailed:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L208
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L38
+
