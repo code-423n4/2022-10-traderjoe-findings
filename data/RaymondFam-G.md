@@ -140,3 +140,45 @@ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L406-L4
                 tokenX.safeTransfer(_to, _amountOut);
             }
 ``` 
+## ++i/--i costs less gas compared to i++/i--
+++i/--1 costs less gas compared to i++/i-- for unsigned integers considering the pre-increment/decrement operation is cheaper (about 5 GAS per iteration).
+
+i++/i-- increments/decrements i and makes the compiler create a temporary variable for returning the initial value of i. In contrast, ++i/--i returns the actual incremented/decremented value without making the compiler do extra job.
+
+Here are some of the instances entailed:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBQuoter.sol#L100
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBQuoter.sol#L154
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBQuoter.sol#L177
+
+## Unchecked SafeMath Saves Gas
+"Checked" math, which is default in ^0.8.0 is not free. The compiler will add some overflow checks, somehow similar to those implemented by `SafeMath`. While it is reasonable to expect these checks to be less expensive than the current `SafeMath`, one should keep in mind that these checks will increase the cost of "basic math operation" that were not previously covered. This particularly concerns variable increments in for loops. When no arithmetic overflow/underflow is going to happen, `unchecked { ++i ;}` to use the previous wrapping behavior further saves gas in the for loop below as an example:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBQuoter.sol#L75-L91
+
+```
+        for (uint256 i; i < swapLength;) {
+            // Fetch swap for V1
+            quote.pairs[i] = IJoeFactory(factoryV1).getPair(_route[i], _route[i + 1]);
+
+            if (quote.pairs[i] != address(0) && quote.amounts[i] > 0) {
+                (uint256 reserveIn, uint256 reserveOut) = _getReserves(quote.pairs[i], _route[i], _route[i + 1]);
+
+                if (reserveIn > 0 && reserveOut > 0) {
+                    quote.amounts[i + 1] = JoeLibrary.getAmountOut(quote.amounts[i], reserveIn, reserveOut);
+                    quote.virtualAmountsWithoutSlippage[i + 1] = JoeLibrary.quote(
+                        (quote.virtualAmountsWithoutSlippage[i] * 997) / 1000,
+                        reserveIn,
+                        reserveOut
+                    );
+                    quote.fees[i] = 0.003e18; // 0.3%
+                }
+                unchecked {
+                    ++i;
+                }
+
+            }
+```
+
+
+
