@@ -28,3 +28,13 @@ Of course, the type of the `flashLoanFee` must be changed to `uint64` in every f
 - https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBFactory.sol#L63:L68 (constructor)
 - https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBFactory.sol#L474:L481 (setFlashLoanFee)
 - https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/interfaces/ILBFactory.sol#L36 (event FlashLoanFeeSet)
+
+In addition to this, the `LBPair` contract must be modified when doing a flash loan (e.g. `flashLoan` function), the type of the variable related to the fees must be changed to `uint64`:
+- https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L428
+- https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L1044
+
+And the content of the `_getFlashLoanFee` function requires a slight modification to properly handle the calculation:
+
+    function _getFlashLoanFee(uint256 _amount, uint64 _fee) internal pure returns (uint256) {
+        return (_amount * uint256(_fee)) / Constants.PRECISION;
+    }
