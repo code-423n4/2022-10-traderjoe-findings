@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "metapriest",
+  "risk": "2",
+  "title": "Overflow on Transfer Breaks Invariant",
+  "issueId": 22,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/22"
+}
