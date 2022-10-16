@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "cccz",
+  "risk": "2",
+  "title": "LBRouter: There is no slippage control in the _addLiquidity function for the tokens the user receives",
+  "issueId": 55,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/55"
+}
