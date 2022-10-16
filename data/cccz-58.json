@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "cccz",
+  "risk": "2",
+  "title": "When the token is a rebasing token, flash loan users can trigger a rebase event in the callback to reduce the number of tokens to be repaid",
+  "issueId": 58,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/58"
+}
