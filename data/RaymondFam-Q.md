@@ -64,3 +64,8 @@ Consider using OpenZeppelin's Initializable which will have this scenario better
 Critical operations not triggering events will make it difficult to review the correct behavior of the deployed contracts. Users and blockchain monitoring systems will not be able to detect suspicious behaviors at ease without events. Consider adding events where appropriate for all critical operations for better support of off-chain logging API. Here is one of the instances entailed:
 
 https://github.com/code-423n4/2022-10-traderjoe/blob/main//src/LBPair.sol#L905
+
+## Lines Too Long
+Lines in source code are typically limited to 80 characters, but it’s reasonable to stretch beyond this limit when need be as monitor screens theses days are comparatively larger. Considering the files will most likely reside in GitHub that will have a scroll bar automatically kick in when the length is over 164 characters, all code lines and comments should be split when/before hitting this length. Keep line width to max 120 characters for better readability where possible. Here are some of the instances entailed:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/libraries/Oracle.sol#L69-L70
