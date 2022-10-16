@@ -144,7 +144,9 @@ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L406-L4
 A storage pointer is cheaper since copying a state struct in memory would incur as many SLOADs and MSTOREs as there are slots. In another words, this causes all fields of the struct/array to be read from storage, incurring a Gcoldsload (2100 gas) for each field of the struct/array, and then further incurring an additional MLOAD rather than a cheap stack read. As such, declaring the variable with the storage keyword and caching any fields that need to be re-read in stack variables will be much cheaper, involving only Gcoldsload for all associated field reads. Read the whole struct/array into a memory variable only when it is being returned by the function, passed into a function that requires memory, or if the array/struct is being read from another memory array/struct. Here are some of the instances entailed:
 
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L220
+https://github.com/code-423n4/2022-10-traderjoe/blob/main//src/LBPair.sol#L310
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L318
+https://github.com/code-423n4/2022-10-traderjoe/blob/main//src/LBPair.sol#L327
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L426
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L486
 
