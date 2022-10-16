@@ -39,3 +39,23 @@ Here are some of the instances entailed:
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L208
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L38
 
+## Not Completely Using OpenZeppelin Contracts
+OpenZeppelin maintains a library of standard, audited, community-reviewed, and battle-tested smart contracts. Instead of always importing these contracts, Trader Joe project re-implements them in some cases. This increases the amount of code that the Trader Joe team will have to maintain and miss all the improvements and bug fixes that the OpenZeppelin team is constantly implementing with the help of the community.
+
+Consider importing the OpenZeppelin contracts instead of re-implementing or copying them. These contracts can be extended to add the extra functionalities required by Blur Exchange. Here is one of the instances entailed:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/libraries/ReentrancyGuardUpgradeable.sol
+
+## Use `delete` to Clear Variables
+`delete a` assigns the initial value for the type to `a`. i.e. for integers it is equivalent to `a = 0`, but it can also be used on arrays, where it assigns a dynamic array of length zero or a static array of the same length with all elements reset. For structs, it assigns a struct with all members reset. Similarly, it can also be used to set an address to zero address. It has no effect on whole mappings though (as the keys of mappings may be arbitrary and are generally unknown).
+
+The delete key better conveys the intention and is also more idiomatic. Consider replacing assignments of zero with delete statements. Here is one of the instances entailed:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/libraries/FeeHelper.sol#L68
+
+## OpenZeppelin's Initializable
+`initialize()` of `LBPair.sol` uses `(address(tokenX) != address(0))` to prevent re-initialization of majority of the function parameters. 
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L112
+
+Consider using OpenZeppelin's Initializable which will have this scenario better taken care of. When a contract is initialized, its `isInitialized` state variable is set to true.
