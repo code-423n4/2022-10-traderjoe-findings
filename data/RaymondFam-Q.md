@@ -74,3 +74,30 @@ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/libraries/Oracle.s
 Solidity ^0.8.12 features `string.concat()` that can be used instead of `abi.encodePacked(<str>,<str>)`. Here is one of the instances entailed:
 
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBFactory.sol#L3
+
+Additionally, Solidity ^0.8.10 features gas reduction on external calls which expect a return value. Here are some of the instances entailed:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L3
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L3
+
+## Zero Address Check for `mint()`
+As a safety check, insert the following code line:
+
+```
+    if(_to == address(0)) revert LBPair__AddressZero();
+```
+prior to calling `_mint() on:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L579
+
+## Zero Value Check for `flashLoan()`
+As a safety check, insert the following code line just as it has been done for `swap()`:
+
+```
+if (_amountXOut == 0 || _amountYOut == 0) revert LBPair__BrokenFlashLoanSafetyCheck();
+```
+prior to calling `safeTransfer()` on:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L435-L436
+
+Note: The new custom error may have to be added to `LBErrors.sol`
