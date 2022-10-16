@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "durianSausage",
+  "risk": "3",
+  "title": "H02: USE SAFETRANSFERFROM INSTEAD OF TRANSFERFROM",
+  "issueId": 54,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/54"
+}
