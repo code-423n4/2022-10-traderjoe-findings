@@ -178,6 +178,6 @@ If need be, the `private` constant values can always be read from the verified c
 
 Here are some of the instances entailed:
 
-https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBFactory.sol#L25-L41
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBFactory.sol#L25-L30
 
 
