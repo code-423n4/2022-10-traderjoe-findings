@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "Captainkay",
+  "risk": "2",
+  "title": "TokenHelper.safeTransfer does not validate address ",
+  "issueId": 65,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/65"
+}
