@@ -1,45 +1,6 @@
-## "\> 0" is less efficient than "!= 0" for unsigned integers
-
-There are 9 instances of this issue:
- =================
-
-### file: LBFactory.sol
-
-1.if (_nbPresets > 0)
-1.https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBFactory.sol#L161
-
-2.if (_nbAvailable > 0)
-2.https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBFactory.sol#L191
-
-==================
-### file: LBQuoter.sol
-
-3.if (reserveIn > 0 && reserveOut > 0)
-3.https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBQuoter.sol#L82
-
-4.if (LBPairsAvailable.length > 0 && quote.amounts\[i\] > 0)
-4.https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBQuoter.sol#L99
-
-5.for (uint256 i = swapLength; i > 0; i--) {
-5.https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBQuoter.sol#L154
-
-6.if (quote.pairs\[i - 1\] != address(0) && quote.amounts\[i\] > 0) {
-6.https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBQuoter.sol#L157
-
-7.if (reserveIn > 0 && reserveOut > quote.amounts\[i\]) {
-7.https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBQuoter.sol#L160
-
-8.if (LBPairsAvailable.length > 0 && quote.amounts\[i\] > 0)
-8.https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBQuoter.sol#L176
-
-9.if (quote.pairs\[i\] != address(0) && quote.amounts\[i\] > 0)
-9.https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBQuoter.sol#L79
-
-===========================
-
 ## ARRAY.LENGTH SHOULD NOT BE LOOKED UP IN EVERY LOOP OF A FOR-LOOP
 
-There are 3 instances of this issue:
+There are 7 instances of this issue:
 
 ======================
 
@@ -134,3 +95,19 @@ Should create new state variable then use it in the for loop:
   for(uint256. i =0; i < idsLength; ++i)
 
 ==========================================
+
+## USING PRIVATE RATHER THAN PUBLIC FOR CONSTANTS, SAVES GAS
+
+### If needed, the value can be read from the verified contract source code. Savings are due to the compiler not having to create non-payable getter functions for deployment calldata, and not adding another entry to the method ID table.
+
+### File: LBFactory.sol
+
+1.uint256 public constant override MAX_FEE = 0.1e18; // 10%
+2.uint256 public constant override MIN_BIN_STEP = 1; // 0.01%
+3.uint256 public constant override MAX_BIN_STEP = 100; // 1%, can't be greater than 247 for indexing reasons
+4.uint256 public constant override MAX_PROTOCOL_SHARE = 2_500; // 25%
+
+1.https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBFactory.sol#L25
+2.https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBFactory.sol#L27
+3.https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBFactory.sol#L28
+4.https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBFactory.sol#L30
