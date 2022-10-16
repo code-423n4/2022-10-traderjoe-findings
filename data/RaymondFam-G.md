@@ -159,3 +159,25 @@ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L243
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L251
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L679
 
+## `abi.encode()` Costs More Gas Than `abi.encodePacked()`
+Changing `abi.encode()` to `abi.encodePacked()` can save gas considering the former pads extra null bytes at the end of the call data, which is unnecessary. Please visit the following the link delineating how `abi.encodePacked()` is more gas efficient in general:
+
+https://github.com/ConnorBlockchain/Solidity-Encode-Gas-Comparison
+
+Here is one of the instances entailed:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBFactory.sol#L265
+
+## Use `private` Instead of `public` for Constants
+Using `private` rather than `public` for constants saves 3406-3606 gas in contract deployment by skipping the compiler effort to:
+1. create non-payable getter functions for deployment calldata, 
+2. store the bytes of the value outside of where it’s used, and,
+3. add another entry to the method ID table.
+
+If need be, the `private` constant values can always be read from the verified contract source code, or, if there are multiple values, a single getter function that returns a [tuple](https://github.com/code-423n4/2022-08-frax/blob/90f55a9ce4e25bceed3a74290b854341d8de6afa/src/contracts/FraxlendPair.sol#L156-L178) of the values of all currently-public constants can be set up.
+
+Here are some of the instances entailed:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBFactory.sol#L25-L41
+
+
