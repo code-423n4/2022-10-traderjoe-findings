@@ -59,3 +59,8 @@ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/libraries/FeeHelpe
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L112
 
 Consider using OpenZeppelin's Initializable which will have this scenario better taken care of. When a contract is initialized, its `isInitialized` state variable is set to true.
+
+## Lack of Events for Critical Operations
+Critical operations not triggering events will make it difficult to review the correct behavior of the deployed contracts. Users and blockchain monitoring systems will not be able to detect suspicious behaviors at ease without events. Consider adding events where appropriate for all critical operations for better support of off-chain logging API. Here is one of the instances entailed:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main//src/LBPair.sol#L905
