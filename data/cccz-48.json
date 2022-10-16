@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "cccz",
+  "risk": "3",
+  "title": "LBToken: When a user transfers tokens to himself, the amount of tokens is double counted",
+  "issueId": 48,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/48"
+}
