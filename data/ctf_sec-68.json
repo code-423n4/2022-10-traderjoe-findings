@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "ctf_sec",
+  "risk": "2",
+  "title": "Flashloan from LBPair.sol is not compatible with fee-on-transfer token, user may overpaying the flashloan fee for fee-on-transfer token ",
+  "issueId": 68,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/68"
+}
