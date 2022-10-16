@@ -44,6 +44,16 @@ src/libraries/SwapHelper.sol::3 => pragma solidity ^0.8.0;
 src/libraries/TokenHelper.sol::3 => pragma solidity ^0.8.0;
 src/libraries/TreeMath.sol::3 => pragma solidity ^0.8.0;
 ```
-#### Tools used
-[c4udit](https://github.com/byterocket/c4udit)
 
+
+
+### ReEntrancy
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L207-L223
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L230-L259 
+
+
+#### Impact
+
+In a Re-entrancy attack, a malicious contract calls back into the calling contract before the first invocation of the function is finished. This may cause the different invocations of the function to interact in undesirable ways, especially in cases where the function is updating state variables after the external calls.
+This may lead to loss of funds, improper value updates, token loss, etc.
