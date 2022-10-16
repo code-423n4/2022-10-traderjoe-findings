@@ -180,4 +180,8 @@ Here are some of the instances entailed:
 
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBFactory.sol#L25-L30
 
+## Payable Access Control Functions Costs Less Gas
+Consider marking functions with access control as `payable`. This will save 20 gas on each call by their respective permissible callers for not needing to have the compiler check for `msg.value`. Here are some of the instances entailed:
 
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L788
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L792
