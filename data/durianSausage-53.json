@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "durianSausage",
+  "risk": "3",
+  "title": "H01: RETURN VALUES OF TRANSFER()/TRANSFERFROM() NOT CHECKED",
+  "issueId": 53,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/53"
+}
