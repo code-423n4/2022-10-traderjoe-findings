@@ -140,45 +140,20 @@ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L406-L4
                 tokenX.safeTransfer(_to, _amountOut);
             }
 ``` 
-## ++i/--i costs less gas compared to i++/i--
-++i/--1 costs less gas compared to i++/i-- for unsigned integers considering the pre-increment/decrement operation is cheaper (about 5 GAS per iteration).
+## Use Storage Instead of Memory for Structs/Arrays
+A storage pointer is cheaper since copying a state struct in memory would incur as many SLOADs and MSTOREs as there are slots. In another words, this causes all fields of the struct/array to be read from storage, incurring a Gcoldsload (2100 gas) for each field of the struct/array, and then further incurring an additional MLOAD rather than a cheap stack read. As such, declaring the variable with the storage keyword and caching any fields that need to be re-read in stack variables will be much cheaper, involving only Gcoldsload for all associated field reads. Read the whole struct/array into a memory variable only when it is being returned by the function, passed into a function that requires memory, or if the array/struct is being read from another memory array/struct. Here are some of the instances entailed:
 
-i++/i-- increments/decrements i and makes the compiler create a temporary variable for returning the initial value of i. In contrast, ++i/--i returns the actual incremented/decremented value without making the compiler do extra job.
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L220
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L318
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L426
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L486
 
-Here are some of the instances entailed:
+## `uint256` Can be Cheaper Than Smaller Bit-size Type
+When dealing with function arguments or memory values, there is no inherent benefit using types that are smaller than 32 bytes (256 bits) because the compiler does not pack these values. Your contract’s gas usage may be higher because the EVM operates on 32 bytes at a time. Therefore, if the element is smaller than that, the EVM must use more operations in order to reduce the size of the element from 32 bytes to the desired size. The EVM needs to properly enforce the limits of this smaller type.
 
-https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBQuoter.sol#L100
-https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBQuoter.sol#L154
-https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBQuoter.sol#L177
+It is only more efficient when you can pack variables of uint8 into the same storage slot with other neighboring variables smaller than 32 bytes. However, if you are not reading or writing all the values at the same time, this can have the opposite effect. Here are some of the instances entailed:
 
-## Unchecked SafeMath Saves Gas
-"Checked" math, which is default in ^0.8.0 is not free. The compiler will add some overflow checks, somehow similar to those implemented by `SafeMath`. While it is reasonable to expect these checks to be less expensive than the current `SafeMath`, one should keep in mind that these checks will increase the cost of "basic math operation" that were not previously covered. This particularly concerns variable increments in for loops. When no arithmetic overflow/underflow is going to happen, `unchecked { ++i ;}` to use the previous wrapping behavior further saves gas in the for loop below as an example:
-
-https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBQuoter.sol#L75-L91
-
-```
-        for (uint256 i; i < swapLength;) {
-            // Fetch swap for V1
-            quote.pairs[i] = IJoeFactory(factoryV1).getPair(_route[i], _route[i + 1]);
-
-            if (quote.pairs[i] != address(0) && quote.amounts[i] > 0) {
-                (uint256 reserveIn, uint256 reserveOut) = _getReserves(quote.pairs[i], _route[i], _route[i + 1]);
-
-                if (reserveIn > 0 && reserveOut > 0) {
-                    quote.amounts[i + 1] = JoeLibrary.getAmountOut(quote.amounts[i], reserveIn, reserveOut);
-                    quote.virtualAmountsWithoutSlippage[i + 1] = JoeLibrary.quote(
-                        (quote.virtualAmountsWithoutSlippage[i] * 997) / 1000,
-                        reserveIn,
-                        reserveOut
-                    );
-                    quote.fees[i] = 0.003e18; // 0.3%
-                }
-                unchecked {
-                    ++i;
-                }
-
-            }
-```
-
-
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L243
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L251
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L679
 
