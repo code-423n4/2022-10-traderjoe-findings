@@ -3,7 +3,7 @@ The Tight Variable Packing pattern in Solidity allows the packing of storage var
 
 In the factory file `LBFactory.sol`, from line 32 to 39 : https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBFactory.sol#L32:L39 we can see 4 storage variables which are not defined in an optimal order to benefits from this pattern: `LBPairImplementation` (address), `feeRecipient`(address), `flashLoanFee`(uint256), `creationUnlocked`(bool).
 
-As per Solidity, here are the following bytes used for the theses types:
+As per Solidity, here are the following bytes used for the these types:
 - address: 20 bytes
 - uint256: 32 bytes
 - bool: 1 byte
@@ -38,3 +38,17 @@ And the content of the `_getFlashLoanFee` function requires a slight modificatio
     function _getFlashLoanFee(uint256 _amount, uint88 _fee) internal pure returns (uint256) {
         return (_amount * uint256(_fee)) / Constants.PRECISION;
     }
+
+### Other possibility
+In case the type of the `flashLoanFee` variable cannot be reduced to a `uint88` for some reason and should remain a `uint256`, I would just recommend to change the declaration's order of the variables this way:
+
+    address public override LBPairImplementation;
+
+    address public override feeRecipient;
+
+    /// @notice Whether the createLBPair function is unlocked and can be called by anyone (true) or only by owner (false)
+    bool public override creationUnlocked;
+
+    uint256 public override flashLoanFee;
+
+This would simply use 3 storage slots instead of 4.
