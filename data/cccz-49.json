@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "cccz",
+  "risk": "2",
+  "title": "LBRouter: Wrong order of variables for subtraction calculation in swapAVAXForExactTokens function",
+  "issueId": 49,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/49"
+}
