@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "Lambda",
+  "risk": "2",
+  "title": "beforeTokenTransfer called with wrong parameters in LBToken._burn",
+  "issueId": 108,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/108"
+}
