@@ -1,4 +1,4 @@
-# Q-01: Event PresetSet is emitted regardless of whether binStep is already set.
+# N-01: Event PresetSet is emitted regardless of whether binStep is already set.
 
 [LBFactory.sol#L381](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBFactory.sol#L381)
 ```solidity
