@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "trustindistrust",
+  "risk": "3",
+  "title": "`LBToken`s sent by a user attempting a 'manual' `mint()` can be rerouted by anyone monitoring the contract's balances or the mempool to represent their own liquidity.",
+  "issueId": 103,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/103"
+}
