@@ -120,3 +120,14 @@ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBFactory.sol#L474
 
 ## Make Contracts Pausable to Protect Against Unprecedented Exploits
 No contracts are guaranteed to be bullet proof against exploits. In the event of a hack or exploit encountered, the Trader Joe team would be able to pause functionality until necessary changes are made to fix the system. To the least, `LBRouter.sol` and `LBPair.sol` should have a pausable modifier associated with their key external functions.
+
+## Use `require()` Instead of `assert()` to Validate Users` Input
+The assert function should only be used to examine invariants and test for internal problems. When used correctly, it can assess your contract and discover the conditions and function calls that will result in a failed assert. A properly running program should never reach a failing assert statement; if this occurs, there is a flaw in your contract that has to be addressed. Here is one of the instances entailed which should be replaced by `require()` to validate a user's input:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBFactory.sol#L141
+
+On a side note, the `assert()` function when false, uses up all the remaining gas and reverts all the changes made. On the other hand, a `require()` function when false, also reverts back all the changes made to the contract but does refund all the remaining gas fees we offered to pay. 
+
+Please visit the following link for further details:
+
+https://codedamn.com/news/solidity/assert-vs-require-in-solidity
