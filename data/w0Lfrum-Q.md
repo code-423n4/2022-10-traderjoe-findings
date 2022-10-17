@@ -28,6 +28,9 @@ BitMath.sol is already imported by the Math512Bits.sol
 **FeeDistributionHelper.sol** [Line7,8,10](https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/libraries/FeeDistributionHelper.sol#L7-L8)
 LBErrors.sol, Constants, SafeCast.sol are already imported by the FeeHelper.sol file.
 
+**SwapHelper.sol** [Line 6](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/libraries/SwapHelper.sol#L6) [Line10](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/libraries/SwapHelper.sol#L10)
+Constants.sol and SafeMath.sol are already imported by the FeeHelper.sol file.
+
 ### 4. No Access Specifier Given for Some of the State Variables
 
 **Lines of Code :**
