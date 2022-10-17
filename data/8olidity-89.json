@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "8olidity",
+  "risk": "2",
+  "title": "LBPairImplementation as address(0) can cause createLBPair() to fail to run",
+  "issueId": 89,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/89"
+}
