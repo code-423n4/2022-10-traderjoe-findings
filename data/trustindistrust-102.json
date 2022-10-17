@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "trustindistrust",
+  "risk": "3",
+  "title": "`LBToken`s sent to the Router by a user attempting a 'manual' `burn()` can be stolen by anyone monitoring the contract's balances or the mempool.",
+  "issueId": 102,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/102"
+}
