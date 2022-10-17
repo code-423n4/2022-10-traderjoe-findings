@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "trustindistrust",
+  "risk": "3",
+  "title": "Quote asset whitelist is bypassable because whitelist checks don't happen against both supplied tokens in `LBFactory.createLBPair()`",
+  "issueId": 100,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/100"
+}
