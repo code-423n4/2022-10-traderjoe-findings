@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "shung",
+  "risk": "2",
+  "title": "Invalid value handling in `Math128x128.log2()`",
+  "issueId": 94,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/94"
+}
