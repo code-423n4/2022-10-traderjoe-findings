@@ -80,16 +80,6 @@ Additionally, Solidity ^0.8.10 features gas reduction on external calls which ex
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L3
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L3
 
-## Zero Address Check for `mint()`
-As a safety check, insert the following code line:
-
-```
-    if(_to == address(0)) revert LBPair__AddressZero();
-```
-prior to calling `_mint() on:
-
-https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol#L579
-
 ## Zero Value Check for `flashLoan()`
 As a safety check, insert the following code line just as it has been done for `swap()`:
 
@@ -111,3 +101,20 @@ Known deviations from “normal” ERC20 behavior should be explicitly noted as 
 3. Rebasing tokens: A combination of the above cases, these are tokens in which an account’s balance increases or decreases along with expansions or contractions in supply. The contract provides no mechanism to update its internal accounting in response to these unexpected balance adjustments, and funds may be lost as a result.
 
 Tokens of the above nature are presumably filtered off via `_quoteAssetWhitelist` in `LBFactory.sol` that is lacking in adequate documentations.
+
+## Add a Timelock to Critical Parameter Change
+It is a good practice to give time for users to react and adjust to critical changes with a mandatory time window between them. The first step merely broadcasts to users that a particular change is coming, and the second step commits that change after a suitable waiting period. This allows users that do not accept the change to withdraw within the grace period. A timelock provides more guarantees and reduces the level of trust required, thus decreasing risk for users. It also indicates that the project is legitimate (less risk of a malicious Owner making any malicious or ulterior intention). Here is one of the instances entailed:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBFactory.sol#L215-L226
+
+## Sanity/Threshold/Limit checks on Setter Functions
+Devoid of sanity/threshold/limit checks, certain critical parameters of the contracts can be configured to invalid values, causing a variety of issues and breaking expected interactions between contracts. Consider adding proper validation checks in the setter function logic. If the validation procedure is unclear or too complex to implement on-chain, document the potential issues that could produce invalid values. Here are some of the instances entailed:
+
+Lacking zero address check:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBFactory.sol#L215-L226
+
+Lacking threshold/limit check:
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBFactory.sol#L474-L481
+
