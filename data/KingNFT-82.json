@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "KingNFT",
+  "risk": "2",
+  "title": "Flashloan funds are from the pair, but fees are credited to the active bin only",
+  "issueId": 82,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/82"
+}
