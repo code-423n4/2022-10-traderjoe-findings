@@ -118,3 +118,5 @@ Lacking threshold/limit check:
 
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBFactory.sol#L474-L481
 
+## Make Contracts Pausable to Protect Against Unprecedented Exploits
+No contracts are guaranteed to be bullet proof against exploits. In the event of a hack or exploit encountered, the Trader Joe team would be able to pause functionality until necessary changes are made to fix the system. To the least, `LBRouter.sol` and `LBPair.sol` should have a pausable modifier associated with their key external functions.
