@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "Lambda",
+  "risk": "3",
+  "title": "LBToken: Self-transfers inflate token balance",
+  "issueId": 107,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/107"
+}
