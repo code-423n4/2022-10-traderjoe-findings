@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "Rahoz",
+  "risk": "2",
+  "title": "LBRouter.swapAVAXForExactTokens can fail",
+  "issueId": 115,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/115"
+}
