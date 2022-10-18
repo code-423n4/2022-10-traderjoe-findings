@@ -43,7 +43,7 @@ Constants.sol and SafeMath.sol are already imported by the FeeHelper.sol file.
 **Lines of Code :**
 
 **Math128x128.sol** [Line 17-19](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/libraries/Math128x128.sol#L17-L19)
-It is recommended to explicitly specify the access specifier for the state variables.
+It is recommended to explicitly specify the access specifier for the state variables. The access specifier for these three variables can be `private`
 
 ### 5. Conflicting File Imports
 
