@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "rvierdiiev",
+  "risk": "2",
+  "title": "Flash loan fee doesn't have any input checking",
+  "issueId": 119,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/119"
+}
