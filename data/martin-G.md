@@ -239,3 +239,47 @@ File: /src/LBRouter.sol
 ```
 
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol
+
+### G-06 Not using the named `return` variables when a `function` `returns` wastes deployment gas
+
+_There are **11** instances of this issue:_
+
+```solidity
+File: /src/libraries/Math512Bits.sol
+
+34: ) internal pure returns (uint256 result) {
+
+123: ) internal pure returns (uint256 result) {
+```
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/libraries/Math512Bits.sol
+
+```solidity
+File: /src/libraries/Samples.sol
+
+45: ) internal view returns (bytes32 packedSample) {
+
+75: ) internal pure returns (bytes32 packedSample) {
+```
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/libraries/Samples.sol
+
+```solidity
+File: /src/LBPair.sol
+
+137: uint256 reserveX,
+
+138: uint256 reserveY,
+
+139: uint256 activeId
+
+156: uint256 feesXTotal,
+
+157: uint256 feesYTotal,
+
+158: uint256 feesXProtocol,
+
+159: uint256 feesYProtocol
+```
+
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBPair.sol
