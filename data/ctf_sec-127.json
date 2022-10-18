@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "ctf_sec",
+  "risk": "3",
+  "title": "User may loss their LBTokens without getting any liquidity back due to division rounding in function burn",
+  "issueId": 127,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/127"
+}
