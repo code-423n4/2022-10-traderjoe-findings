@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "ladboy233",
+  "risk": "3",
+  "title": "User fee accounting is broken when LBToken is burned because of the incorrect function call of _beforeTokenTransfer",
+  "issueId": 125,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/125"
+}
