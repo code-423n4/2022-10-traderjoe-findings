@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "0xSmartContract",
+  "risk": "2",
+  "title": "Tokens with more than 18 decimal points will cause issues Major ",
+  "issueId": 145,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/145"
+}
