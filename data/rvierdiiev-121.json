@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "rvierdiiev",
+  "risk": "2",
+  "title": "TokenHelper.safeTransfer function does not check for the existence of the ERC20 token contract",
+  "issueId": 121,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/121"
+}
