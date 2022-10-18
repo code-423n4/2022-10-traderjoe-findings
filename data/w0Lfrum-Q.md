@@ -26,8 +26,11 @@ Custom Errors can only be used if the compiler version is `0.8.4` and above. The
 **LBPair.sol** [Line7](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBPair.sol#L7)
 LBErrors.sol is already imported by the LBToken.sol file. 
 
+**LBPair.sol** [Line9-10](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBPair.sol#L9-L10), [Line12-13](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBPair.sol#L12-L13), [Line17](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBPair.sol#L17)
+These files are already imported by SwapHelper.sol
+
 **LBPair.sol** [Line 22](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBPair.sol#L22)
-ILBPair.sol is already imported by the LBErrors.sol file. When LBErrors.sol is imported, ILBPair.sol is imported automatically.
+The ILBPair interface will be present in the same file as ILBFactory.sol(reason given in the 5th section below). Importing ILBFactory.sol will be sufficient.
 
 **Math128x128.sol** [Line 6](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/libraries/Math128x128.sol#L6)
 BitMath.sol is already imported by the Math512Bits.sol
@@ -35,8 +38,8 @@ BitMath.sol is already imported by the Math512Bits.sol
 **FeeDistributionHelper.sol** [Line7,8,10](https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/libraries/FeeDistributionHelper.sol#L7-L8)
 LBErrors.sol, Constants, SafeCast.sol are already imported by the FeeHelper.sol file.
 
-**SwapHelper.sol** [Line 6](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/libraries/SwapHelper.sol#L6) [Line10](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/libraries/SwapHelper.sol#L10)
-Constants.sol and SafeMath.sol are already imported by the FeeHelper.sol file.
+**SwapHelper.sol** [Line 6](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/libraries/SwapHelper.sol#L6) [Line10](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/libraries/SwapHelper.sol#L9-10)
+Constants.sol and SafeMath.sol are already imported by the FeeHelper.sol file. Math512Bits.sol is already imported by BinHelper.sol
 
 ### 4. No Access Specifier Given for Some of the State Variables
 
