@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "0xSmartContract",
+  "risk": "2",
+  "title": "`safeTransfer` function does not check for existence of ERC20 token contract",
+  "issueId": 140,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/140"
+}
