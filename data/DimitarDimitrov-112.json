@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "DimitarDimitrov",
+  "risk": "2",
+  "title": "external increaseOracleLength method do not have any modifiers",
+  "issueId": 112,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/112"
+}
