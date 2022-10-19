@@ -5,6 +5,9 @@ https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2
 https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBPair.sol#L617-L618
 (3) function 'addLiquidity' of LBRouter.sol, 1 occurrence
 https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBRouter.sol#L207
+(4) function 'addLiquidityAVAX' of LBRouter.sol, 1 occurrence
+https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBRouter.sol#L230
+
 
 2. Check if the flash loan amount is zero before gas expensive operations like transferring token
 function 'flashLoan' in LBPair.sol allows users to loan both tokens meanwhile, but the scenario is very common that users loan only one of them. It's better to check if  '_amountXOut != 0' / '_amountYOut != 0' before any subsequent operations.
