@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "catchup",
+  "risk": "2",
+  "title": "Missing boundary checks when setting the fees",
+  "issueId": 149,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/149"
+}
