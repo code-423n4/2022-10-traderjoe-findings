@@ -260,3 +260,13 @@ LBFactory.sol:28:    uint256 public constant override MAX_BIN_STEP = 100; // 1%,
 LBFactory.sol:30:    uint256 public constant override MAX_PROTOCOL_SHARE = 2_500; // 25%
 ```
 
+## [G-9] Multiple address mappings can be combined into a single mapping of an address to a struct, where appropriate
+
+Saves a storage slot for the mapping. Depending on the circumstances and sizes of types, can avoid a Gsset (20000 gas) per mapping combined. Reads and subsequent writes can also be cheaper when a function requires both values and they both fit in the same storage slot. Finally, if both fields are accessed in the same function, can save ~42 gas per access due to not having to recalculate the key's keccak256 hash (Gkeccak256 - 30 gas) and that calculation's associated stack operations.
+```solidity
+LBToken.sol:18:    mapping(uint256 => mapping(address => uint256)) private _balances;
+LBToken.sol:21:    mapping(address => mapping(address => bool)) private _spenderApprovals;
+LBToken.sol:27:    mapping(address => EnumerableSet.UintSet) private _userIds;
+LBPair.sol:68:    mapping(address => bytes32) private _unclaimedFees;
+LBPair.sol:70:    mapping(address => mapping(uint256 => Debts)) private _accruedDebts;
+```
