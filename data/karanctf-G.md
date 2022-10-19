@@ -1,20 +1,13 @@
-## [G-1] `++i`/`i++` should be `unchecked{++i}`/`unchecked{++i}` when it is not possible for them to overflow, as is the case when used in `for`- and `while`-loops :
-```solidity
-LBRouter.sol:674:            for (uint256 i; i < depositIds.length; ++i) {
-LBRouter.sol:778:            for (uint256 i; i < _pairs.length; ++i) {
-LBRouter.sol:831:            for (uint256 i; i < _pairs.length; ++i) {
-LBRouter.sol:878:            for (uint256 i; i < _pairs.length; ++i) {
-LBRouter.sol:951:            for (uint256 i; i < pairs.length; ++i) {
-LBFactory.sol:165:                for (uint256 i = MIN_BIN_STEP; i <= MAX_BIN_STEP; ++i) {
-LBFactory.sol:195:                for (uint256 i = MIN_BIN_STEP; i <= MAX_BIN_STEP; ++i) {
-LBToken.sol:90:            for (uint256 i; i < _accounts.length; ++i) {
-LBToken.sol:163:            for (uint256 i; i < _ids.length; ++i) {
-LBPair.sol:274:            for (uint256 i; i < _ids.length; ++i) {
-LBPair.sol:496:            for (uint256 i; i < _ids.length; ++i) {
-LBPair.sol:623:            for (uint256 i; i < _ids.length; ++i) {
-LBPair.sol:701:            for (uint256 i; i < _ids.length; ++i) {
-```
+## [G-1] Multiple address mappings can be combined into a single mapping of an address to a struct, where appropriate
 
+Saves a storage slot for the mapping. Depending on the circumstances and sizes of types, can avoid a Gsset (20000 gas) per mapping combined. Reads and subsequent writes can also be cheaper when a function requires both values and they both fit in the same storage slot. Finally, if both fields are accessed in the same function, can save ~42 gas per access due to not having to recalculate the key's keccak256 hash (Gkeccak256 - 30 gas) and that calculation's associated stack operations.
+```solidity
+LBToken.sol:18:    mapping(uint256 => mapping(address => uint256)) private _balances;
+LBToken.sol:21:    mapping(address => mapping(address => bool)) private _spenderApprovals;
+LBToken.sol:27:    mapping(address => EnumerableSet.UintSet) private _userIds;
+LBPair.sol:68:    mapping(address => bytes32) private _unclaimedFees;
+LBPair.sol:70:    mapping(address => mapping(uint256 => Debts)) private _accruedDebts;
+```
 
 ## [G-2] Use preincrement to save gas
 ```solidity
@@ -260,13 +253,20 @@ LBFactory.sol:28:    uint256 public constant override MAX_BIN_STEP = 100; // 1%,
 LBFactory.sol:30:    uint256 public constant override MAX_PROTOCOL_SHARE = 2_500; // 25%
 ```
 
-## [G-9] Multiple address mappings can be combined into a single mapping of an address to a struct, where appropriate
-
-Saves a storage slot for the mapping. Depending on the circumstances and sizes of types, can avoid a Gsset (20000 gas) per mapping combined. Reads and subsequent writes can also be cheaper when a function requires both values and they both fit in the same storage slot. Finally, if both fields are accessed in the same function, can save ~42 gas per access due to not having to recalculate the key's keccak256 hash (Gkeccak256 - 30 gas) and that calculation's associated stack operations.
+## [G-9] `++i`/`i++` should be `unchecked{++i}`/`unchecked{++i}` when it is not possible for them to overflow, as is the case when used in `for`- and `while`-loops :
 ```solidity
-LBToken.sol:18:    mapping(uint256 => mapping(address => uint256)) private _balances;
-LBToken.sol:21:    mapping(address => mapping(address => bool)) private _spenderApprovals;
-LBToken.sol:27:    mapping(address => EnumerableSet.UintSet) private _userIds;
-LBPair.sol:68:    mapping(address => bytes32) private _unclaimedFees;
-LBPair.sol:70:    mapping(address => mapping(uint256 => Debts)) private _accruedDebts;
+LBRouter.sol:674:            for (uint256 i; i < depositIds.length; ++i) {
+LBRouter.sol:778:            for (uint256 i; i < _pairs.length; ++i) {
+LBRouter.sol:831:            for (uint256 i; i < _pairs.length; ++i) {
+LBRouter.sol:878:            for (uint256 i; i < _pairs.length; ++i) {
+LBRouter.sol:951:            for (uint256 i; i < pairs.length; ++i) {
+LBFactory.sol:165:                for (uint256 i = MIN_BIN_STEP; i <= MAX_BIN_STEP; ++i) {
+LBFactory.sol:195:                for (uint256 i = MIN_BIN_STEP; i <= MAX_BIN_STEP; ++i) {
+LBToken.sol:90:            for (uint256 i; i < _accounts.length; ++i) {
+LBToken.sol:163:            for (uint256 i; i < _ids.length; ++i) {
+LBPair.sol:274:            for (uint256 i; i < _ids.length; ++i) {
+LBPair.sol:496:            for (uint256 i; i < _ids.length; ++i) {
+LBPair.sol:623:            for (uint256 i; i < _ids.length; ++i) {
+LBPair.sol:701:            for (uint256 i; i < _ids.length; ++i) {
 ```
+
