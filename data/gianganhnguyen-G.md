@@ -148,5 +148,62 @@ I suggest wrapping with an `unchecked` block here:
                                                                   ...
                                                               }    // I suggest create a memory variable of the storage variable `factoryV1` outside while loop, and use it instead.
 
+# 8. [G-8] Parameter: If we are not modifying the passed parameter we should pass it as `calldata` because `calldata` is more gas efficient than `memory`.
+
+I suggest using `calldata` instead of `memory` here:
+
+    File src/LBPair.sol, line 261:     function pendingFees(address _account, uint256[] memory _ids)
+    File src/LBPair.sol, line 466:     function mint(
+                                                                uint256[] memory _ids,
+                                                                uint256[] memory _distributionX,
+                                                                uint256[] memory _distributionY,
+                                                                address _to
+                                                      )
+    File src/LBPair.sol, line 616:     function burn(
+                                                                uint256[] memory _ids,
+                                                                uint256[] memory _amounts,
+                                                                address _to
+                                                      )
+    File src/LBPair.sol, line 688:     function collectFees(address _account, uint256[] memory _ids)
+    File src/LBPair.sol, line 844:     function _getPendingFees(
+                                                                Bin memory _bin,
+                                                                address _account,
+                                                                uint256 _id,
+                                                                uint256 _balance
+                                                      )
+    File src/LBPair.sol, line 861:     function _updateUserDebts(
+                                                                Bin memory _bin,
+                                                                address _account,
+                                                                uint256 _id,
+                                                                uint256 _balance
+                                                      )
+    File src/LBPair.sol, line 881:     function _cacheFees(
+                                                                Bin memory _bin,
+                                                                address _user,
+                                                                uint256 _id,
+                                                                uint256 _previousBalance,
+                                                                uint256 _newBalance
+                                                      )
+
+    File src/LBQuoter.sol, line 54:     function findBestPathFromAmountIn(address[] memory _route, uint256 _amountIn)
+    File src/LBQuoter.sol, line 134:     function findBestPathFromAmountOut(address[] memory _route, uint256 _amountOut)
+    File src/LBQuoter.sol, line 42:     modifier verifyInputs(uint256[] memory _pairBinSteps, IERC20[] memory _tokenPath)
+    File src/LBQuoter.sol, line 207:     function addLiquidity(LiquidityParameters memory _liquidityParameters)
+    File src/LBQuoter.sol, line 274:     function removeLiquidity
+    File src/LBQuoter.sol, line 308:     function removeLiquidityAVAX
+    File src/LBQuoter.sol, line 352:     function swapExactTokensForTokens
+    File src/LBQuoter.sol, line 377:     function swapExactTokensForAVAX
+    File src/LBQuoter.sol, line 407:     function swapExactAVAXForTokens
+    File src/LBQuoter.sol, line 431:     function swapTokensForExactTokens
+    File src/LBQuoter.sol, line 459:     function swapTokensForExactAVAX
+    File src/LBQuoter.sol, line 493:     function swapAVAXForExactTokens
+    File src/LBQuoter.sol, line 531:     function swapExactTokensForTokensSupportingFeeOnTransferTokens
+    File src/LBQuoter.sol, line 561:     function swapExactTokensForAVAXSupportingFeeOnTransferTokens
+    File src/LBQuoter.sol, line 594:     function swapExactAVAXForTokensSupportingFeeOnTransferTokens
+    File src/LBQuoter.sol, functions: sweepLBToken, _addLiquidity, _getAmountsIn, _removeLiquidity, _swapExactTokensForTokens, _swapTokensForExactTokens, _swapSupportingFeeOnTransferTokens, _getPairs
+
+    File src/LBToken.sol, line 79:     function balanceOfBatch(address[] memory _accounts, uint256[] memory _ids)
+    File src/LBToken.sol, line 149:     function safeBatchTransferFrom
+
 
 
