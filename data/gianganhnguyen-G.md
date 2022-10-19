@@ -205,5 +205,14 @@ I suggest using `calldata` instead of `memory` here:
     File src/LBToken.sol, line 79:     function balanceOfBatch(address[] memory _accounts, uint256[] memory _ids)
     File src/LBToken.sol, line 149:     function safeBatchTransferFrom
 
+# 9. [G-9] Variable: Incrementing and Decrementing by 1, ++number cost less gas compare number++ or number += 1
+
+I suggest using `++number` instead of `number++` or `number += 1` here:
+
+    File src/libraries/BitMath.sol, line 100:     msb += 1;
+    File src/libraries/BitMath.sol, line 139:     lsb += 1;
+
+    File src/libraries/Math512Bits.sol, line 99:     if (mulmod(x, y, 1 << offset) != 0) result += 1;
+    File src/libraries/Math512Bits.sol, line 159:     if (mulmod(x, 1 << offset, denominator) != 0) result += 1;
 
 
