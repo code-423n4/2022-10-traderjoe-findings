@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "0x52",
+  "risk": "2",
+  "title": "Flashloan fees can be easily stolen with just in time liquidity",
+  "issueId": 173,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/173"
+}
