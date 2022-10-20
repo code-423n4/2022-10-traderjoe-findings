@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "0x52",
+  "risk": "3",
+  "title": "Logical error in LBToken#_burn causes loss of access to LBTokens",
+  "issueId": 179,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/179"
+}
