@@ -29,7 +29,16 @@ function 'flashLoan' in LBPair.sol allows users to loan both tokens meanwhile, b
 
 https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBPair.sol#L420-L456
 
-2. Using 'calldata' instead of 'memory' for read-only arguments in external functions saves gas
+2. Change '|=' to '=' while initializing oracle array
+'|=' need an extra **SLOAD** , it's not necessary while initializing, the affected function:
+```
+    function initialize(bytes32[65_535] storage _oracle, uint256 _index) internal {
+        _oracle[_index] |= bytes32(uint256(1));
+    }
+```
+https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/libraries/Oracle.sol#L130
+
+3. Using 'calldata' instead of 'memory' for read-only arguments in external functions saves gas
 (1) function 'mint' of LBPair.sol, 3 occurrences
 https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBPair.sol#L467-L469
 (2) function 'burn' of LBPair.sol, 2 occurrences
