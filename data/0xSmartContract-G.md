@@ -1036,3 +1036,33 @@ Code Generator: Skip existence check for external contract if return data is exp
 
 **Recommendation:**
 Consider to upgrade pragma to at least 0.8.10
+### [S-01] Use `v4.8.0 OpenZeppelin` contracts
+
+**Description:**
+The upcoming v4.8.0 version of OpenZeppelin provides many small gas optimizations.
+
+https://github.com/OpenZeppelin/openzeppelin-contracts/releases/tag/v4.8.0-rc.0
+
+```js
+v4.8.0-rc.0
+⛽ Many small optimizations
+```
+
+###  [S-02] Missing `zero-address` check in `constructor`
+
+**Description:**
+Missing checks for zero-addresses may lead to infunctional protocol, if the variable addresses are updated incorrectly. It also wast gas as it requires the redeployment of the contract.
+
+```js
+src/LBQuoter.sol:
+39     /// @param _factoryV2 Dex V2 factory address
+40:     constructor(
+41   	address _routerV2,
+42     	address _routerV2,
+43         	address _routerV2,
+44       ) {
+45 	routerV2 = _routerV2;
+46 	factoryV1 = _factoryV1;
+47 	factoryV2 = _factoryV2;
+48          }
+```
