@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "yongskiws",
+  "risk": "2",
+  "title": "The return value is stored on the stack and popped off when the function returns",
+  "issueId": 178,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/178"
+}
