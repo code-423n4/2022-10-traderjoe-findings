@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "corerouter",
+  "risk": "2",
+  "title": "Anyone can call increaseOracleLength to set oracleSize which is an important parameter for LBPair.",
+  "issueId": 182,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/182"
+}
