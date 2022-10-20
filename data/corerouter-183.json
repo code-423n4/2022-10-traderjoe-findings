@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "corerouter",
+  "risk": "2",
+  "title": "Event is emitted when the actual on-chain operation did not happen.",
+  "issueId": 183,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/183"
+}
