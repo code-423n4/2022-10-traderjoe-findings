@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "d3e4",
+  "risk": "2",
+  "title": "`swapAVAXForExactTokens` is rather `swapExactAVAXForExactTokens`",
+  "issueId": 191,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/191"
+}
