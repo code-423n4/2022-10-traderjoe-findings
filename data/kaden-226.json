@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "kaden",
+  "risk": "3",
+  "title": "Low-level call token transfer may lead to false positive",
+  "issueId": 226,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/226"
+}
