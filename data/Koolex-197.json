@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "Koolex",
+  "risk": "2",
+  "title": "Loss of funds for the borrower if mistakenly sent extra unrequired amount when paying back a flash loan",
+  "issueId": 197,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/197"
+}
