@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "kaden",
+  "risk": "2",
+  "title": "Unprotected `address(this)` checks allow attacker to delegatecall from another contract to spoof values such as the token balances of `LBPair` instances",
+  "issueId": 228,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/228"
+}
