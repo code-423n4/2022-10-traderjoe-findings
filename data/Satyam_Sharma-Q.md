@@ -20,3 +20,41 @@ function swapExactTokensForAVAXSupportingFeeOnTransferTokens
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L562
 
 Insure to make checks!!
+
+4.No zero address check is performed on a address recepient(address _to) on several function's some are marked below this can be lead to an critical issue if an malicious user willingly/unwillingly put an address equal to zero!!
+
+
+function removeLiquidity 
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L282
+
+function removeLiquidityAVAX
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L315
+
+function swapExactTokensForTokens
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L357
+
+function swapExactTokensForAVAX
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L382
+
+function swapExactAVAXForTokens
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L411
+
+ function swapTokensForExactTokens
+ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L436
+
+ function swapTokensForExactAVAX
+ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L464
+
+ function swapAVAXForExactTokens
+ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L497
+
+ function swapExactTokensForTokensSupportingFeeOnTransferTokens
+ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L536
+
+ function swapExactTokensForAVAXSupportingFeeOnTransferTokens
+ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L566
+
+ function swapExactAVAXForTokensSupportingFeeOnTransferTokens
+ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L598
+
+Make a safety require/if condition that insures that zero address check is performed 
