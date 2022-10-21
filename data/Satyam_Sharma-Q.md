@@ -57,4 +57,4 @@ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L411
  function swapExactAVAXForTokensSupportingFeeOnTransferTokens
  https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L598
 
-Make a safety require/if condition that insures that zero address check is performed 
+Make a safety require/if condition that insures that zero address check is performed..
