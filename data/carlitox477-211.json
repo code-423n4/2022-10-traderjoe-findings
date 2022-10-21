@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "carlitox477",
+  "risk": "2",
+  "title": "LBQuoter#constructor: allows deployer to set address zero to immutable variables",
+  "issueId": 211,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/211"
+}
