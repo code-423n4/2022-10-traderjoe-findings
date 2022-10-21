@@ -50,4 +50,4 @@ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L420
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L394
 
         if (_amountOutMin > amountOut) revert LBRouter__InsufficientAmountOut(_amountOutMin, amountOut);
-https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L366
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L366  
