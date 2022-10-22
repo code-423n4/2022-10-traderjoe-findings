@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "chaduke",
+  "risk": "3",
+  "title": "Serious logical error for the check for function createLBPair",
+  "issueId": 242,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/242"
+}
