@@ -503,6 +503,42 @@ testConstructor(uint16,uint16,uint16,uint16,uint16,uint24,uint16,uint24) (gas: -
 Overall gas change: -88563 (-1.364%)
 ```
 
+## Gas Savings as per Forge Gas Report:
+
+`src/LBPair.sol:LBPair contract:`
+
+Deployment cost reduced from 4835641 to 4816614 = 19027. 
+|Function Name         |avg gas cost before|avg gas cost after|gas savings|
+|----------------------|-------------------|------------------|-----------|
+|collectFees           | 27696             | 27685            | 11        |
+|findFirstNonEmptyBinId|2302               |2266              | 36        |
+|flashLoan             | 55799             | 55787            | 12        |
+|mint                  | 1402644           | 1402618          | 26        |
+|safeBatchTransferFrom | 408394            | 408376           | 18        |
+|safeTransferFrom      | 23071             | 23060            | 11        |
+|swap                  | 50433             | 50426            |  7        |    
+|**Total Gas Saved**                  |              |             |  121        |  
+	
+
+`src/LBRouter.sol:LBRouter contract`
+Deployment cost reduced from 4591267 to 4586658 = 4603.
+|Function Name           |avg gas cost before|avg gas cost after|gas savings|
+|------------------------|-------------------|------------------|-----------|
+|addLiquidity            | 1271111           | 1271086          | 25        |
+|addLiquidityAVAX        | 1466315           | 1466287          | 28        |
+|getSwapIn               | 19023             | 18987            | 36        |
+|getSwapOut              | 19897             | 19879            | 18        |
+|removeLiquidity         | 579712            | 579694           | 18        |
+|removeLiquidityAVAX     | 976395            | 976363           | 32        |
+|swapAVAXForExactTokens  | 28690             | 28671            | 19        |
+|swapTokensForExactAVAX  | 29628             | 29610            | 18        |
+|swapTokensForExactTokens| 127916            | 127820           | 96        |
+|sweepLBToken            | 156904            | 156892           | 12        |
+|**Total Gas Saved**            |             |            |  302     |
+
+Foundry gas report on original code: [link](https://gist.github.com/El-Ku/1a332287d2e7013c365aa93ed12eb2b1)
+Foundry gas report on optimized code: [link](https://gist.github.com/El-Ku/822507c2bae3e1cb27b5c96a3853cbe9)
+
 ## Conclusions:
 
 The tests showed a reduction of 1.364% in gas usage after the mitigations are applied. This is just for the mitigations which I was able to apply in the project. There were other suggestions which I couldn't test it out, as they affected other parts in the code as well.
