@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "adriro",
+  "risk": "2",
+  "title": "Incorrect mask size when decoding `oracleId` parameter",
+  "issueId": 279,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/279"
+}
