@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "yongskiws",
+  "risk": "3",
+  "title": "non-reverting calls are assumed to be successful \"missing return value\"  which affects several tokens.",
+  "issueId": 277,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/277"
+}
