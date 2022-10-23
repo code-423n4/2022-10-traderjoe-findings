@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "ak1",
+  "risk": "2",
+  "title": "LBFactory.sol#L234 : createLBPair will revert due to overflow",
+  "issueId": 364,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/364"
+}
