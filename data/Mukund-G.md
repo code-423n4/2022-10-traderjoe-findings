@@ -44,6 +44,9 @@ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L711
 ## USING` --I` INSTEAD OF `I--` SAVES GAS
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L711
 
+## USING UNCHECK BLOCK FOR `I--/I++` SAVES GAS
+https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L711
+
 ## USING BYTES32 INSTEAD OF STRING SAVES GAS
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBToken.sol#L29-L30
 
