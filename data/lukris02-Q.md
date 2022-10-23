@@ -1,10 +1,11 @@
 # QA Report for Trader Joe v2 contest
 
 ## Overview
-During the audit, 7 non-critical issues were found.
+During the audit, 1 low and 7 non-critical issues were found.
 
 № | Title | Risk Rating  | Instance Count
 --- | --- | --- | ---
+L-1 | [Wrong comparison sign](#l-1-wrong-comparison-sign) | Low | 1
 NC-1 | [Order of Functions](#nc-1-order-of-functions) | Non-Critical | 8
 NC-2 | [Order of Layout](#nc-2-order-of-layout) | Non-Critical | 2
 NC-3 | [Inconsistent comment location](#nc-3-inconsistent-comment-location) | Non-Critical | 10
@@ -12,6 +13,21 @@ NC-4 | [Inconsistency when using the number 1000](#nc-4-inconsistency-when-using
 NC-5 | [Public functions can be external](#nc-5-public-functions-can-be-external) | Non-Critical | 18
 NC-6 | [Missing NatSpec](#nc-6-missing-natspec) | Non-Critical | 11
 NC-7 | [Unused named return variables](#nc-7-unused-named-return-variables) | Non-Critical | 4
+
+## Low Risk Findings (1)
+### L-1. Wrong comparison sign
+##### Description
+The function ```swapAVAXForExactTokens``` will revert when ```msg.value > amountsIn[0]``` because ```amountsIn[0] - msg.value```  will always cause underflow.  
+Solidity version ^0.8.0 is used, so it will revert when underflow happens.
+
+##### Instances
+- https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L520
+
+##### Recommendation
+Change to:
+```
+if (msg.value > amountsIn[0]) _safeTransferAVAX(_to, msg.value - amountsIn[0] );
+```
 
 ## Non-Critical Risk Findings (7)
 ### NC-1. Order of Functions
