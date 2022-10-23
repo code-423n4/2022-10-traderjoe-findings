@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "Chom",
+  "risk": "2",
+  "title": "Using a fixed price per bin causes prices to be worse than the current price up to half of the bin step.",
+  "issueId": 294,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/294"
+}
