@@ -46,3 +46,15 @@ https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2
 https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBQuoter.sol#L177
 ==========================================================
 
+Events Indexing
+Events should use the maximum amount of indexed fields: up to three parameters. This makes it easier to filter for specific values in front-ends.
+
+Proof of Concept
+
+Recommended Mitigation Steps Add indexed fields to these events so that they have the maximum number of indexed fields possible.
+https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/interfaces/IJoePair.sol#L8-L9
+https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/interfaces/IJoePair.sol#L49-L59
+https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/interfaces/ILBFactory.sol#L34-L67
+https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/interfaces/ILBPair.sol#L111
+https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/interfaces/ILBPair.sol#L148-L152
+
