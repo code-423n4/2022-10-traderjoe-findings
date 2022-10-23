@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "rbserver",
+  "risk": "2",
+  "title": "More than enough can be sent back to pair after calling `flashLoan` function that causes extra token amount sent being lost for borrower of the flash loan",
+  "issueId": 472,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/472"
+}
