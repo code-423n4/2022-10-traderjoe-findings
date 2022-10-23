@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "hansfriese",
+  "risk": "2",
+  "title": "The mapping `LBToken._userIds` might save the wrong result.",
+  "issueId": 443,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/443"
+}
