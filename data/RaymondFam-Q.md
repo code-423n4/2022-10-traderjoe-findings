@@ -42,7 +42,7 @@ https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol#L38
 ## Not Completely Using OpenZeppelin Contracts
 OpenZeppelin maintains a library of standard, audited, community-reviewed, and battle-tested smart contracts. Instead of always importing these contracts, Trader Joe project re-implements them in some cases. This increases the amount of code that the Trader Joe team will have to maintain and miss all the improvements and bug fixes that the OpenZeppelin team is constantly implementing with the help of the community.
 
-Consider importing the OpenZeppelin contracts instead of re-implementing or copying them. These contracts can be extended to add the extra functionalities required by Blur Exchange. Here is one of the instances entailed:
+Consider importing the OpenZeppelin contracts instead of re-implementing or copying them. These contracts can be extended to add the extra functionalities required by Trader Joe. Here is one of the instances entailed:
 
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/libraries/ReentrancyGuardUpgradeable.sol
 
@@ -103,7 +103,7 @@ Known deviations from “normal” ERC20 behavior should be explicitly noted as 
 Tokens of the above nature are presumably filtered off via `_quoteAssetWhitelist` in `LBFactory.sol` that is lacking in adequate documentations.
 
 ## Add a Timelock to Critical Parameter Change
-It is a good practice to give time for users to react and adjust to critical changes with a mandatory time window between them. The first step merely broadcasts to users that a particular change is coming, and the second step commits that change after a suitable waiting period. This allows users that do not accept the change to withdraw within the grace period. A timelock provides more guarantees and reduces the level of trust required, thus decreasing risk for users. It also indicates that the project is legitimate (less risk of a malicious Owner making any malicious or ulterior intention). Here is one of the instances entailed:
+It is a good practice to give time for users to react and adjust to critical changes with a mandatory time window between them. The first step merely broadcasts to users that a particular change is coming, and the second step commits that change after a suitable waiting period. This allows users that do not accept the change to withdraw within the grace period. A timelock provides more guarantees and reduces the level of trust required, thus decreasing risk for users. It also indicates that the project is legitimate (less risk of a malicious Owner making any malicious or ulterior intention). Specifically, privileged roles could use front running to make malicious changes just ahead of incoming transactions, or purely accidental negative effects could occur due to the unfortunate timing of changes. Here is one of the instances entailed:
 
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBFactory.sol#L215-L226
 
