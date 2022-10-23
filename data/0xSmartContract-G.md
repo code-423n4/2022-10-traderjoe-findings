@@ -316,7 +316,7 @@ PairInformation storage _pair = _pairInformation;
 LBPair.sol#L318
 FeeHelper.FeeParameters storage _fp = _feeParameters;
 ```
-### [G-08] Usage of uints/ints smaller than 32 bytes (256 bits) saves gas
+### [G-08] Using uints/ints smaller than 32 bytes (256 bits) increases gas usage
 
 **Context:**
 [FeeDistributionHelper.sol#L31](https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/libraries/FeeDistributionHelper.sol#L31)
