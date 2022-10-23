@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "KingNFT",
+  "risk": "2",
+  "title": "Bin reserve overflow check with with incorrect parameter",
+  "issueId": 308,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/308"
+}
