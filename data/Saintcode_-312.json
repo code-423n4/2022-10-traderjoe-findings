@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "Saintcode_",
+  "risk": "3",
+  "title": "LBPair `swap()` can be front-runned, a malicious attacker can call swap with higher gas than a user, getting the user swap amount transferred to the attacker address",
+  "issueId": 312,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/312"
+}
