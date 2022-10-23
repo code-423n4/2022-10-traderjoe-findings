@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "cryptonue",
+  "risk": "2",
+  "title": "Improper Upper Bound definition on the setPreset in LBFactory",
+  "issueId": 468,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/468"
+}
