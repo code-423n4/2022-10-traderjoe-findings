@@ -115,7 +115,7 @@ index f745362..39bce22 100644
 
 ## [I-2]: Using OpenZeppelin's `AccessControl` library would allow relinquishing certain admin powers
 
-There are many admin functions in the Liquidity Book protocol. Some of these functions can be considered to increase the centralization of the protocol. For example `setLBPairIgnored()` and `setLBPairImplementation()` are too powerful. Trader Joe team might in the feature want to irreversibly relinquish the usage of these functions without relinquishing the ability to execute other admin functions. Using AccessControl and having separate self-managed roles have access to certain function would allow renouncing those roles selectively when the time comes.
+There are many admin functions in the Liquidity Book protocol. Some of these functions can be considered to increase the centralization of the protocol. For example `setLBPairIgnored()` and `setLBPairImplementation()` are too powerful. Trader Joe team might in the feature want to irreversibly relinquish the usage of these functions without relinquishing the ability to execute other admin functions. Using AccessControl and having separate self-managed roles have access to certain functions would allow renouncing those roles selectively when the time comes.
 
 ## [I-3]: Typos or misleading comments
 
@@ -154,7 +154,6 @@ src/libraries/Math512Bits.sol-91-    /// @return result The result as an uint256
 src/libraries/Math512Bits.sol-92-    function mulShiftRoundUp(
 src/libraries/Math512Bits.sol-93-        uint256 x,
 --
-src/libraries/FeeHelper.sol-126-        return (_amountPlusFee * _fee) / (Constants.PRECISION + _fee); /// @audit SELF: x + x * y = z => x * ( 1 + y ) = z => x = z / ( 1 + y ) => x * y = z * y / ( 1 + y )
 src/libraries/FeeHelper.sol-127-    }
 src/libraries/FeeHelper.sol-128-
 src/libraries/FeeHelper.sol:129:    /// @notice Return the fees added when an user adds liquidity and change the ratio in the active bin /// @audit INFO: typo: an user -> a user
