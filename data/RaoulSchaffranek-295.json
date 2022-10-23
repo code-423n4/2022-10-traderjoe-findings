@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "RaoulSchaffranek",
+  "risk": "3",
+  "title": "Missing input validation allows to deploy pairs whith non-whitelisted tokens",
+  "issueId": 295,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/295"
+}
