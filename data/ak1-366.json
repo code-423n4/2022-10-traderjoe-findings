@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "ak1",
+  "risk": "2",
+  "title": "FeeHelper.sol#L91 : The output from the function getBaseFee is not 18 decimal precision",
+  "issueId": 366,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/366"
+}
