@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "pashov",
+  "risk": "2",
+  "title": "`LBRouter`'s `swapAVAXForExactTokens` will always revert when value sent is more than needed",
+  "issueId": 343,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/343"
+}
