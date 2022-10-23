@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "TomJ",
+  "risk": "2",
+  "title": "Slippage Issue when User Directly Interact with LBPair.sol",
+  "issueId": 357,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/357"
+}
