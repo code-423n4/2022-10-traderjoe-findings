@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "ak1",
+  "risk": "3",
+  "title": "trader-joe-v2  does not provide any mechanism to handle the pairs with different decimal values.",
+  "issueId": 382,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/382"
+}
