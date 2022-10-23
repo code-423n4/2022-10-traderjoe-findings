@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "RaoulSchaffranek",
+  "risk": "3",
+  "title": "Missing input validation can lead to accidential burning of tokens",
+  "issueId": 300,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/300"
+}
