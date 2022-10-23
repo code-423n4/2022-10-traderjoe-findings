@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "zzzitron",
+  "risk": "2",
+  "title": "Fee-on-transfer vulnerability in `LBRouter:swapExactTokensForTokens`.",
+  "issueId": 322,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/322"
+}
