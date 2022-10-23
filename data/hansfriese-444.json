@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "hansfriese",
+  "risk": "2",
+  "title": "`FeeDistributionHelper.flashLoanHelper()` doesn't calculate the protocol fee for the protocol's preference when there is an exceeded amount after the flash loan.",
+  "issueId": 444,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/444"
+}
