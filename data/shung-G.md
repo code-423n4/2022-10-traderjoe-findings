@@ -457,3 +457,150 @@ testFuzzingAddLiquidity(uint256),30,0.003%
 testOracleSampleFromWith100Samples(),-1320,-0.005%
 Overall,-1746,-0.005%
 ```
+
+## [G-07] Runtime cost can be optimized in detriment of the deploy cost
+
+There are two optimization to improve runtime cost. Although the following optimizations will increase the gas cost of new pair creation and certain admin functions, it will decrease runtime cost of core protocol functions (swap, add/remove liquidity). Given that a pair is created once, but thousands of operations are made on it, optimizing for runtime can save a lot of gas in the long term.
+
+### [G-07A] Storing `LBFactory._LBPairsInfo` info in both sorting order will save gas in runtime
+
+When `LBFactory.createLBPair()` is called, the pair information can be stored in both sorting orders of its reserve tokens. This will allow skipping [`_sortTokens()`](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBFactory.sol#L607-L611), reducing the gas cost of [`_getLBPairInformation()`](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBFactory.sol#L593-L600).
+
+```diff
+diff --git a/src/LBFactory.sol b/src/LBFactory.sol
+index 32ee39c..7c66fbf 100644
+--- a/src/LBFactory.sol
++++ b/src/LBFactory.sol
+@@ -183,9 +183,7 @@ contract LBFactory is PendingOwnable, ILBFactory {
+         returns (LBPairInformation[] memory LBPairsAvailable)
+     {
+         unchecked {
+-            (IERC20 _tokenA, IERC20 _tokenB) = _sortTokens(_tokenX, _tokenY);
+-
+-            bytes32 _avLBPairBinSteps = _availableLBPairBinSteps[_tokenA][_tokenB];
++            bytes32 _avLBPairBinSteps = _availableLBPairBinSteps[_tokenX][_tokenY];
+             uint256 _nbAvailable = _avLBPairBinSteps.decode(type(uint8).max, 248);
+ 
+             if (_nbAvailable > 0) {
+@@ -194,7 +192,7 @@ contract LBFactory is PendingOwnable, ILBFactory {
+                 uint256 _index;
+                 for (uint256 i = MIN_BIN_STEP; i <= MAX_BIN_STEP; ++i) {
+                     if (_avLBPairBinSteps.decode(1, i) == 1) {
+-                        LBPairInformation memory _LBPairInformation = _LBPairsInfo[_tokenA][_tokenB][i];
++                        LBPairInformation memory _LBPairInformation = _LBPairsInfo[_tokenX][_tokenY][i];
+ 
+                         LBPairsAvailable[_index] = LBPairInformation({
+                             binStep: i.safe24(),
+@@ -273,6 +271,12 @@ contract LBFactory is PendingOwnable, ILBFactory {
+             createdByOwner: msg.sender == _owner,
+             ignoredForRouting: false
+         });
++        _LBPairsInfo[_tokenB][_tokenA][_binStep] = LBPairInformation({
++            binStep: _binStep,
++            LBPair: _LBPair,
++            createdByOwner: msg.sender == _owner,
++            ignoredForRouting: false
++        });
+ 
+         allLBPairs.push(_LBPair);
+ 
+@@ -286,6 +290,7 @@ contract LBFactory is PendingOwnable, ILBFactory {
+ 
+             // Save the changes
+             _availableLBPairBinSteps[_tokenA][_tokenB] = _avLBPairBinSteps;
++            _availableLBPairBinSteps[_tokenB][_tokenA] = _avLBPairBinSteps;
+         }
+ 
+         emit LBPairCreated(_tokenX, _tokenY, _binStep, _LBPair, allLBPairs.length - 1);
+@@ -315,14 +320,13 @@ contract LBFactory is PendingOwnable, ILBFactory {
+         uint256 _binStep,
+         bool _ignored
+     ) external override onlyOwner {
+-        (IERC20 _tokenA, IERC20 _tokenB) = _sortTokens(_tokenX, _tokenY);
+-
+-        LBPairInformation memory _LBPairInformation = _LBPairsInfo[_tokenA][_tokenB][_binStep];
++        LBPairInformation memory _LBPairInformation = _LBPairsInfo[_tokenX][_tokenY][_binStep];
+         if (address(_LBPairInformation.LBPair) == address(0)) revert LBFactory__AddressZero();
+ 
+         if (_LBPairInformation.ignoredForRouting == _ignored) revert LBFactory__LBPairIgnoredIsAlreadyInTheSameState();
+ 
+-        _LBPairsInfo[_tokenA][_tokenB][_binStep].ignoredForRouting = _ignored;
++        _LBPairsInfo[_tokenX][_tokenY][_binStep].ignoredForRouting = _ignored;
++        _LBPairsInfo[_tokenY][_tokenX][_binStep].ignoredForRouting = _ignored;
+ 
+         emit LBPairIgnoredStateChanged(_LBPairInformation.LBPair, _ignored);
+     }
+@@ -595,7 +599,6 @@ contract LBFactory is PendingOwnable, ILBFactory {
+         IERC20 _tokenB,
+         uint256 _binStep
+     ) private view returns (LBPairInformation memory) {
+-        (_tokenA, _tokenB) = _sortTokens(_tokenA, _tokenB);
+         return _LBPairsInfo[_tokenA][_tokenB][_binStep];
+     }
+ 
+```
+
+### [G-07B] Using CREATE2 is cheaper than Clones
+
+Using clone contracts requires extra proxy call, increasing the cost of all pair functions. Using CREATE2, although will increase cost of pair creation, will make all pair interactions cheaper.
+
+## [G-08] Making constant variables private will save gas during deployment
+
+When constants are marked public, extra getter functions are created, increasing the deployment cost. Marking these functions private will decrease gas cost. One can still read these variables through the source code. If they need to be accessed by an external contract, a separate single getter function can be used to return all constants as a tuple. There [are four instances of public constants](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBFactory.sol#L25-L30).
+
+```solidity
+src/LBFactory.sol:25:    uint256 public constant override MAX_FEE = 0.1e18; // 10%
+src/LBFactory.sol:27:    uint256 public constant override MIN_BIN_STEP = 1; // 0.01%
+src/LBFactory.sol:28:    uint256 public constant override MAX_BIN_STEP = 100; // 1%, can't be greater than 247 for indexing reasons
+src/LBFactory.sol:30:    uint256 public constant override MAX_PROTOCOL_SHARE = 2_500; // 25%
+```
+
+## [G-09] Using `bool`s for storage incurs overhead
+
+*Credit: Description by [IllIllI000](https://gist.github.com/IllIllI000)*.
+
+```
+    // Booleans are more expensive than uint256 or any type that takes up a full
+    // word because each write operation emits an extra SLOAD to first read the
+    // slot's contents, replace the bits taken up by the boolean, and then write
+    // back. This is the compiler's defense against contract upgrades and
+    // pointer aliasing, and it cannot be disabled.
+```
+https://github.com/OpenZeppelin/openzeppelin-contracts/blob/58f635312aa21f947cae5f8578638a85aa2519f5/contracts/security/ReentrancyGuard.sol#L23-L27
+Use `uint256(1)` and `uint256(2)` for true/false to avoid a Gwarmaccess ([**100 gas**](https://gist.github.com/IllIllI000/1b70014db712f8572a72378321250058)) for the extra SLOAD, and to avoid Gsset (**20000 gas**) when changing from `false` to `true`, after having been `true` in the past.
+
+There are 2 instances of this issue:
+
+```solidity
+src/LBFactory.sol-38-    /// @notice Whether the createLBPair function is unlocked and can be called by anyone (true) or only by owner (false)
+src/LBFactory.sol:39:    bool public override creationUnlocked;
+--
+src/LBToken.sol-20-    /// @dev Mapping from account to spender approvals
+src/LBToken.sol:21:    mapping(address => mapping(address => bool)) private _spenderApprovals;
+```
+
+## [G‑10] Functions guaranteed to revert when called by normal users can be marked `payable`
+
+*Credit: Description by [IllIllI000](https://gist.github.com/IllIllI000)*.
+
+If a function modifier such as `onlyOwner` is used, the function will revert if a normal user tries to pay the function. Marking the function as `payable` will lower the gas cost for legitimate callers because the compiler will not include checks for whether a payment was provided. The extra opcodes avoided are
+`CALLVALUE`(2),`DUP1`(3),`ISZERO`(3),`PUSH2`(3),`JUMPI`(10),`PUSH1`(3),`DUP1`(3),`REVERT`(0),`JUMPDEST`(1),`POP`(2), which costs an average of about **21 gas per call** to the function, in addition to the extra deployment cost
+
+There are 14 instances of this:
+
+```solidity
+src/libraries/PendingOwnable.sol:59:    function setPendingOwner(address pendingOwner_) public override onlyOwner {
+src/libraries/PendingOwnable.sol:68:    function revokePendingOwner() public override onlyOwner {
+src/libraries/PendingOwnable.sol:84:    function renounceOwnership() public override onlyOwner {
+src/LBFactory.sol:215:    function setLBPairImplementation(address _LBPairImplementation) external override onlyOwner {
+src/LBFactory.sol:317:    ) external override onlyOwner {
+src/LBFactory.sol:350:    ) external override onlyOwner {
+src/LBFactory.sol:396:    function removePreset(uint16 _binStep) external override onlyOwner {
+src/LBFactory.sol:434:    ) external override onlyOwner {
+src/LBFactory.sol:468:    function setFeeRecipient(address _feeRecipient) external override onlyOwner {
+src/LBFactory.sol:474:    function setFlashLoanFee(uint256 _flashLoanFee) external override onlyOwner {
+src/LBFactory.sol:485:    function setFactoryLockedState(bool _locked) external override onlyOwner {
+src/LBFactory.sol:493:    function addQuoteAsset(IERC20 _quoteAsset) external override onlyOwner {
+src/LBFactory.sol:502:    function removeQuoteAsset(IERC20 _quoteAsset) external override onlyOwner {
+src/LBFactory.sol:520:    function forceDecay(ILBPair _LBPair) external override onlyOwner {
+```
