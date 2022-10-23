@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "Ruhum",
+  "risk": "2",
+  "title": "Flashloan fees are not correctly split between LPs and protocol when user pays more than expected",
+  "issueId": 337,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/337"
+}
