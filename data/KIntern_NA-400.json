@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "KIntern_NA",
+  "risk": "3",
+  "title": "Wrong calculation in function `LBRouter._getAmountsIn` make user lose a lot of tokens when swap through JoePair (most of them will gifted to JoePair freely)",
+  "issueId": 400,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/400"
+}
