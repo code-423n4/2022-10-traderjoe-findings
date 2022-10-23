@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "sha256yan",
+  "risk": "3",
+  "title": "Incorrect fee calculation on LBPair (fees collected on swaps are less than what they \"should\" be)",
+  "issueId": 470,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/470"
+}
