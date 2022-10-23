@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "0x5rings",
+  "risk": "2",
+  "title": "Use of .transfer May Revert if the function Consumes More Than 2300 Gas",
+  "issueId": 331,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/331"
+}
