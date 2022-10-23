@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "bin2chen",
+  "risk": "2",
+  "title": "protocol fee for flashLoan() may be less",
+  "issueId": 317,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/317"
+}
