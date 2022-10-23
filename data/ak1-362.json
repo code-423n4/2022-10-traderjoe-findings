@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "ak1",
+  "risk": "2",
+  "title": "Decoder.sol#L15 : decode will revert when overflow happens.",
+  "issueId": 362,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/362"
+}
