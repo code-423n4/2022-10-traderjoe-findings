@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "immeas",
+  "risk": "2",
+  "title": "pair can be created with 0 `_activeId` but liquidity cannot be added to the activeBin",
+  "issueId": 438,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/438"
+}
