@@ -1352,7 +1352,7 @@ Total:31
 
 ### Description:
 
-Not inlining costs 20 to 40 gas because of two extra JUMP instructions and additional stack operations needed for function calls. (**Need to recheck all Wrapped lines internal function name in this file (Match 2 times)**)
+Not inlining costs 20 to 40 gas because of two extra JUMP instructions and additional stack operations needed for function calls. 
 
 ### Findings:
 
@@ -1386,7 +1386,7 @@ Total:4
 
 ### Description:
 
-If the functions are required by an interface, the contract should inherit from that interface and use the override keyword.(**Need to recheck all Wrapped lines internal function name in this file (Match 1 times)**)
+If the functions are required by an interface, the contract should inherit from that interface and use the override keyword.
 
 ### Findings:
 
