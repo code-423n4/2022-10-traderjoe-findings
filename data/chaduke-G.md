@@ -41,6 +41,12 @@ Line 134: change argument *address[] memory _route* to
 
 new file
 https://github.com/code-423n4/2022-10-traderjoe/blob/main/src/LBRouter.sol
+Line 207, change argument 
+    uint256[] memory liquidityParameters 
+to 
+    uint256[] calldata liquidityParameters 
+
+
 Line 280 change argument *uint256[] memory _ids* to
 *uint256[] calldata _ids* to save gas
 
