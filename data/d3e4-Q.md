@@ -1,4 +1,5 @@
 
+
 ## Safety check on `_binStep` is too indirect
 In `LBFactory.createLBPair()` a lack of check on `_binStep` would enable incorrect accounting of the number of LB pairs in `_availableLBPairBinSteps`. This in turn would cause `LBQuoter.findBestPathFromAmountIn()` and `LBQuoter.findBestPathFromAmountOut()` to always revert for that LB pair. This check is however performed by requiring that there be a preset ([LBFactory.sol#259](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBFactory.sol#L259)), which have to be set in `setPreset()` which calls `_getPackedFeeParameters()`, and only here is `_binStep` actually checked to be within the correct bounds ([LBFactory.sol#L543](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBFactory.sol#L543)).
 Any change in this chain might deprive `createLBPair()` of this check. Consider adding a safety check for `_binStep` directly in `createPair()` or at least clearly comment how this check is currently done.
@@ -30,3 +31,4 @@ In `LBPair.sol`, `swap()`, `mint()` and `burn()` are all calls that are said to 
 ["@param amountX" -> "@return amountX"](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBRouter.sol#L739)
 ["@param amountY" -> "@return amountY"](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBRouter.sol#L740)
 Change ["The ids the user want to remove its liquidity"](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBPair.sol#L611) into "The IDs of which the user wants to remove the liquidity" or "The IDs for which the user wants to remove his liquidity", or similar.
+[remove an asset to the whitelist -> remove an asset from the whitelist](https://github.com/code-423n4/2022-10-traderjoe/blob/79f25d48b907f9d0379dd803fc2abc9c5f57db93/src/LBFactory.sol#L500)
