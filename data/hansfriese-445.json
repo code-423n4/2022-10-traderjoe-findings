@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "hansfriese",
+  "risk": "2",
+  "title": "`LBQuoter.findBestPathFromAmountOut()` doesn't calculate `virtualAmountsWithoutSlippage` properly.",
+  "issueId": 445,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/445"
+}
