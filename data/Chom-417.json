@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "Chom",
+  "risk": "2",
+  "title": "Add / Remove liquidity to a wide price range can't be done in a single transaction due to the gas limit. ",
+  "issueId": 417,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/417"
+}
