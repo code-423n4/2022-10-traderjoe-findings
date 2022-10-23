@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "ElKu",
+  "risk": "2",
+  "title": " `swapAVAXForExactTokens` function in LBRouter.sol will revert if the `msg.value` is greater than amount[0]",
+  "issueId": 290,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/290"
+}
