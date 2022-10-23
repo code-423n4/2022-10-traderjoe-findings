@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "parashar",
+  "risk": "2",
+  "title": "Unable to create pair in case of vulnerable LBPairImplementation",
+  "issueId": 321,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/321"
+}
