@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "pashov",
+  "risk": "3",
+  "title": "Anyone can steal all the non-fee balance in `LBPair.sol`",
+  "issueId": 347,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/347"
+}
