@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "rbserver",
+  "risk": "2",
+  "title": "User can lose input token amount while receiving no output token amount when swapping for output token that becomes non-existent",
+  "issueId": 475,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/475"
+}
