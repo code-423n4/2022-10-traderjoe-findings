@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "cylzxje",
+  "risk": "2",
+  "title": "Logical operator should be `||` instead of `&&` ",
+  "issueId": 460,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/460"
+}
