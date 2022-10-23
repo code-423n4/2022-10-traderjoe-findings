@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "Picodes",
+  "risk": "2",
+  "title": "If `LBPair` implementation is upgraded, there is no way to upgrade past pairs, neither to mark which one has the old or the new implementation",
+  "issueId": 369,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/369"
+}
