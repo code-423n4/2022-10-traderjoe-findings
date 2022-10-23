@@ -1,0 +1,8 @@
+{
+  "contest": 171,
+  "handle": "brgltd",
+  "risk": "2",
+  "title": "Lack of check if token exists can be a problem if tokens get destroyed",
+  "issueId": 461,
+  "issueUrl": "https://github.com/code-423n4/2022-10-traderjoe-findings/issues/461"
+}
