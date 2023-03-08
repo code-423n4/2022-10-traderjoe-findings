@@ -1,3 +1,11 @@
+---
+sponsor: "Trader Joe"
+slug: "2022-10-traderjoe"
+date: "2022-12-22"
+title: "Trader Joe v2 contest"
+findings: "https://github.com/code-423n4/2022-10-traderjoe-findings/issues"
+contest: 171
+---
 
 # Overview
 
